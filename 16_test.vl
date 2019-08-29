@@ -1,0 +1,19 @@
+module add1_test;
+reg[15:0] a,b;
+wire[15:0] c;
+wire cr;
+adder_16 a_16(.x(a),.y(b),.z(c),.carry(cr));
+initial
+begin
+$dumpfile("adder_16.vcd");
+$dumpvars(0,add1_test);
+$monitor($time,"a=%h,b=%h,c=%h,cr=%b",a,b,c,cr);
+#3
+a=16'habcd;
+b=16'hdbbb;
+#3
+a=16'h123f;
+b=16'h432a;
+#20 $finish;
+end
+endmodule
